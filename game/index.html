@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ember &amp; Tide — a card duel</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============ TITLE ============ -->
+<div id="screen-title" class="screen">
+  <div class="title-kicker">A duel of seasons · make.fun card game</div>
+  <h1 class="game-title">EMBER <span class="amp">&amp;</span> TIDE</h1>
+  <div class="game-sub">Outplay Vex, the Tidecaller — chain your suits, read her intent, take the crown.</div>
+  <div class="suit-strip">
+    <span class="ember">🔥 Ember</span>
+    <span class="tide">💧 Tide</span>
+    <span class="gale">◆ Gale</span>
+    <span class="stone">▲ Stone</span>
+  </div>
+  <div class="title-rules">
+    Both duelists hold <b>20 life</b>. Each turn you draw 2 cards and gain <b>3 energy</b> —
+    play cards, then end your turn. Play <b>two cards of one suit</b> in a turn for a
+    <b>Surge (+2)</b>. Vex shows her <b>intent</b> before she acts — block it with Mirror Ward.
+  </div>
+  <div class="title-buttons">
+    <button id="btn-start" type="button">▶ Begin the duel</button>
+    <button id="btn-how" type="button" class="secondary">How to play</button>
+  </div>
+  <div id="how-panel">
+    <b>How to play.</b> Click a card to select it, click again (or press Enter) to play it.
+    Arrow keys pick a card, <b>E</b> ends your turn, <b>M</b> mutes, <b>R</b> restarts after the duel.
+    Attacks deal damage (shields soak it first). Guards grant shield. Tricks: Siphon drains life,
+    Quench shatters the rival shield, Kindle draws 2, Mirror Ward blocks the next attack.
+    Surge: the 2nd card of a suit played in one turn gains +2 — Tide also heals 2, Gale draws 1,
+    Stone adds 2 shield. Reduce Vex to 0 life to win; fall to 0 and the crown is hers.
+  </div>
+  <div id="title-cards" aria-hidden="true"></div>
+</div>
+
+<!-- ============ GAME TABLE ============ -->
+<div id="screen-game" class="screen hidden">
+  <div class="topbar">
+    <span class="brand">EMBER &amp; TIDE</span>
+    <span id="turn-label">YOUR TURN</span>
+    <span id="round-label"></span>
+    <span class="spacer"></span>
+    <button id="btn-mute" type="button">🔊 Sound</button>
+    <button id="btn-restart" type="button" class="secondary">↻ New duel</button>
+  </div>
+
+  <div class="rival-zone">
+    <div class="duelist-row">
+      <div class="life-box" id="rival-life"></div>
+      <div id="rival-hand"></div>
+      <div id="rival-intent"></div>
+    </div>
+    <div class="duelist-row"><span id="rival-deck-count" style="width:300px;flex-shrink:0"></span></div>
+  </div>
+
+  <div id="banner"></div>
+
+  <div class="table-middle">
+    <div id="table-played"><div class="table-hint">Your move — play a card, then end the turn.</div></div>
+    <div id="log"></div>
+  </div>
+
+  <div class="player-zone">
+    <div class="duelist-row">
+      <div class="player-controls">
+        <div id="player-energy"></div>
+        <button id="btn-end-turn" type="button">End turn ⏎</button>
+      </div>
+      <div id="player-hand"></div>
+      <div style="width:300px;flex-shrink:0">
+        <div class="life-box" id="player-life" style="width:100%"></div>
+        <div id="deck-count"></div>
+      </div>
+    </div>
+  </div>
+  <div class="hint-line">Click a card to select · click again to play · ← → pick · Enter play · E end turn · M mute</div>
+</div>
+
+<!-- ============ END ============ -->
+<div id="screen-end" class="screen hidden">
+  <div id="confetti"></div>
+  <div class="end-title" id="end-title"></div>
+  <div class="end-sub" id="end-sub"></div>
+  <div id="end-stats"></div>
+  <button id="btn-again" type="button">↻ Duel again (R)</button>
+</div>
+
+<script type="module" src="game.js"></script>
+</body>
+</html>
